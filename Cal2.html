@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loan Repayment Calculator - Free Online Tool</title>
+  <meta name="description" content="Calculate your monthly loan payments instantly with this free online loan calculator. Enter loan amount, interest, and term." />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input, button { padding: 10px; margin-top: 10px; width: 100%; }
+    .result { margin-top: 20px; font-weight: bold; }
+    .adsense { margin: 30px 0; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Loan Repayment Calculator</h1>
+  <p>Enter your loan details below:</p>
+
+  <input type="number" id="amount" placeholder="Loan Amount ($)" />
+  <input type="number" id="rate" placeholder="Annual Interest Rate (%)" />
+  <input type="number" id="term" placeholder="Loan Term (Years)" />
+  <button onclick="calculateLoan()">Calculate</button>
+
+  <div class="result" id="result"></div>
+
+  <!-- 🤑 AdSense Here -->
+  <div class="adsense">
+    <!-- Replace this with your AdSense script later -->
+    <p>[AdSense Ad Placeholder]</p>
+  </div>
+
+  <script>
+    function calculateLoan() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const rate = parseFloat(document.getElementById("rate").value) / 100 / 12;
+      const term = parseFloat(document.getElementById("term").value) * 12;
+
+      if (isNaN(amount) || isNaN(rate) || isNaN(term)) {
+        document.getElementById("result").textContent = "Please enter valid numbers.";
+        return;
+      }
+
+      const payment = (amount * rate) / (1 - Math.pow(1 + rate, -term));
+      document.getElementById("result").textContent = `Your monthly payment is $${payment.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
